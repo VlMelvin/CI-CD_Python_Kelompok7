@@ -1,0 +1,44 @@
+name: Python CI
+
+# Trigger: Kapan CI ini harus berjalan?
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    # Menentukan OS virtual server yang akan mengeksekusi pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Mengambil kodemu dari repository
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2. Menyiapkan environment Python
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.10" # Ubah jika kalian menggunakan versi Python yang berbeda
+
+    # 3. Menginstal library atau dependencies yang dibutuhkan project
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        # Membaca library dari file requirements.txt
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        # Menginstal tools untuk testing dan pengecekan kualitas kode
+        pip install pytest flake8
+
+    # 4. Mengecek kualitas penulisan kode (Linting)
+    - name: Linting dengan flake8
+      run: |
+        # Menghentikan CI jika ada syntax error atau variabel yang belum didefinisikan
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    # 5. Menjalankan skenario pengujian otomatis
+    - name: Menjalankan unit test dengan pytest
+      run: |
+        pytest
