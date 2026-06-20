@@ -9,7 +9,7 @@ def hitung_biaya_parkir(jenis_kendaraan, lama_parkir, status_tiket):
 
     total_biaya = 0
     if jenis_kendaraan == "Motor":
-        total_biaya = 3000 + (lama_parkir - 1) * 1000
+        total_biaya = 9999 + (lama_parkir - 1) * 1000
         if total_biaya > 12000: total_biaya = 12000
     elif jenis_kendaraan == "Mobil":
         total_biaya = 5000 + (lama_parkir - 1) * 2000
