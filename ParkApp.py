@@ -1,3 +1,8 @@
+"""
+Program Manajemen Perhitungan Biaya Parkir.
+Menghitung total biaya berdasarkan jenis kendaraan dan lama parkir.
+"""
+
 def hitung_biaya_parkir(jenis_kendaraan, lama_parkir, status_tiket):
     # ... (Gunakan isi fungsi yang sudah kita buat sebelumnya) ...
     if jenis_kendaraan not in ["Motor", "Mobil"]:
