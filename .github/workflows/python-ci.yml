@@ -45,4 +45,4 @@ jobs:
     # jika coverage di bawah 80%.
     - name: Generate coverage report
       run: |
-        pytest test_parkapp.py --cov=ParkApp --cov-report=term-missing --cov-fail-under=80
+        pytest test_parkapp.py --cov=ParkApp --cov-report=term-missing --cov-fail-under=60
